@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+const PORT = process.env.PORT || 5000;
 
 const base62 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const shortUrlAlgorithm = () => {
@@ -94,8 +95,8 @@ app.post("/set", async (req, res) => {
 
 initMongo()
   .then(() => {
-    app.listen(5000, () => {
-      logger.info("Server listening on port 5000");
+    app.listen(PORT, () => {
+      logger.info(`Server listening on port ${PORT}`);
     });
   })
   .catch((err) => {
